@@ -4,7 +4,7 @@ import h5py
 import argparse
 import numpy as np
 import pretty_midi
-import librosa
+import pypianoroll
 
 def parse_arguments():
     """Parse and return the command line arguments."""
@@ -18,13 +18,13 @@ def parse_arguments():
     return args
 
 def get_scores():
-	"""Retrieve match_scores.json, which matches Lakh MIDI files to 
-	corresponding 'MSD ID' tags for songs in the Million Song Dataset."""
-	args = parse_arguments()
+    """Retrieve match_scores.json, which matches Lakh MIDI files to 
+    corresponding 'MSD ID' tags for songs in the Million Song Dataset."""
+    args = parse_arguments()
     SCORE_FILE = os.path.join(args.data_path, 'results/match_scores.json')
 
     with open(SCORE_FILE, 'r') as f:
-    	scores = json.load(f)
+        scores = json.load(f)
 
     return scores
 
@@ -49,13 +49,13 @@ def midi_path(msd_id):
     return os.path.join(args.data_path, args.midi_dir, msd_id_to_dirs(msd_id), md5 + '.mid')
 
 def fliter_genres():
-	"""Get list of song ids whose genre tags contain keywords."""
-	args = parse_arguments()
+    """Get list of song ids whose genre tags contain keywords."""
+    args = parse_arguments()
 
-	song_list = []
+    song_list = []
 
-	scores = get_scores()
-	msd_id_list = [i for i in scores.keys()]
+    scores = get_scores()
+    msd_id_list = [i for i in scores.keys()]
 
     # Iterate through song IDs
     for msd_id in msd_id_list:
@@ -71,40 +71,44 @@ def fliter_genres():
         if has_key:
             song_list.append(msd_id)
     
-    return song_list	
+    return song_list    
 
 def get_long_songs():
-	"""Get songs longer than min length"""
-	long_songs = []
+    """Get songs longer than min length"""
+    long_songs = []
 
-	args = parse_arguments()
+    args = parse_arguments()
 
-	for song in fliter_genres():
-		try:
-			midi_data = pretty_midi.PrettyMIDI(midi_path(song))
-			if midi_data.get_end_time() >= args.min_length:
-				long_songs.append(song)
-		except:
-			pass
+    for song in fliter_genres():
+        try:
+            midi_data = pretty_midi.PrettyMIDI(midi_path(song))
+            if midi_data.get_end_time() >= args.min_length:
+                long_songs.append(song)
+        except:
+            pass
 
-	return long_songs
+    return long_songs
 
 def main():
-	"""Main function: Converts selected MIDI files to pianoroll."""
-	args = parse_arguments()
+    """Main function: Converts selected MIDI files to pianoroll."""
+    args = parse_arguments()
 
-	songs = get_long_songs()
+    songs = get_long_songs()
 
-	for song in songs:
-		midifile = midi_path(song)
-		npz_path = os.path.join(args.data_path, 'results', 'final_midis', song)
+    final_path = os.path.join(args.data_path, 'results', 'final_midis')
+    if not os.path.exists(final_path):
+        os.mkdir(final_path)
+    
+    for song in songs:
+        midifile = midi_path(song)
+        npz_path = os.path.join(final_path, song)
 
-		if not os.path.exists(os.path.join(npz_path, '.npz')):
-			try:
-            	parsed = pypianoroll.parse(midifile)
-            	pypianoroll.save(npz_path, parsed)
+        if not os.path.exists(os.path.join(npz_path, '.npz')):
+            try:
+                parsed = pypianoroll.parse(midifile)
+                pypianoroll.save(npz_path, parsed)
             except (IOError, IndexError) as e:
-            	pass
+                pass
 
 if __name__ == "__main__":
     main()
