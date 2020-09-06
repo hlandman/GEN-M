@@ -65,7 +65,7 @@ def fliter_genres():
         # Iterate through top-5 "artist_terms" (i.e. genre tags) and check if they contain keywords.
         has_key = False
         for term in [str(i, 'utf-8') for i in metadata['metadata']['artist_terms'][:5]]:
-            if np.any([i in term for i in args.key_list]):
+            if np.any([i in term for i in args.keyword_list]):
                 has_key = True
         
         if has_key:
