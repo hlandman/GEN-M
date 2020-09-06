@@ -15,6 +15,6 @@ lmd_matched_h5 (unzip and add to folder): http://hog.ee.columbia.edu/craffel/lmd
 
 Run preprocessing file to filter songs with the 'tech' and 'elec' keywords, longer than 60 seconds.
 ```bash
-python lakh_preprocess.py --data_path ./data/lmd_matched --midi_dir lmd_matched --meta_dir lmd_matched_h5 /
+python lakh_preprocess.py --data_path ./data/lmd_matched --midi_dir lmd_matched --meta_dir lmd_matched_h5 \
 --keyword_list tech elec --min_length 60
 ```
