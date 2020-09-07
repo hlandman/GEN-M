@@ -15,8 +15,7 @@ lmd_matched_h5 (unzip and add to folder): http://hog.ee.columbia.edu/craffel/lmd
 
 Run preprocessing file to filter songs with the 'tech' and 'elec' keywords, longer than 60 seconds, and store them as .npz pianoroll files in ./data/lmd_matched/results/final_midis.
 ```bash
-python lakh_preprocess.py --data_path ./data/lmd_matched --midi_dir lmd_matched --meta_dir lmd_matched_h5 \
---keyword_list tech elec --min_length 60
+python lakh_preprocess.py --data_path ./data/lmd_matched --midi_dir lmd_matched --meta_dir lmd_matched_h5 --keyword_list tech elec --min_length 60
 ```
 
 Run `parser.py` and `compile.py`, both adapted from https://github.com/wayne391/symbolic-musical-datasets/tree/master/5-track-pianoroll.
