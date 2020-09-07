@@ -56,6 +56,7 @@ def fliter_genres():
 
     scores = get_scores()
     msd_id_list = [i for i in scores.keys()]
+    # msd_id_list = list(get_scores())[:50]
 
     # Iterate through song IDs
     for msd_id in msd_id_list:
@@ -75,18 +76,19 @@ def fliter_genres():
 
 def get_long_songs():
     """Get songs longer than min length"""
-    long_songs = []
-
     args = parse_arguments()
+
+    long_songs = []
 
     for song in fliter_genres():
         try:
             midi_data = pretty_midi.PrettyMIDI(midi_path(song))
-            if midi_data.get_end_time() >= args.min_length:
+            if midi_data.get_end_time() >= int(args.min_length):
                 long_songs.append(song)
         except:
             pass
 
+    print("Long Songs: ", long_songs)
     return long_songs
 
 def main():
