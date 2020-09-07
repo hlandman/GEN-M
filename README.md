@@ -17,13 +17,13 @@
 	* Run preprocessing file to filter songs with the 'tech' and 'elec' keywords, longer than 60 seconds, and store them as .npz pianoroll files in `./data/lmd_matched/results/final_midis`.
 ```bash
 python lakh_preprocess.py --data_path ./data/lmd_matched --midi_dir lmd_matched --meta_dir lmd_matched_h5 --keyword_list tech elec --min_length 60
-```
+```  
 	* Run `parser.py` and `compile.py`, both adapted from [symbolic-musical-datasets](https://github.com/wayne391/symbolic-musical-datasets/tree/master/5-track-pianoroll).  
 		* `parser.py` finds all .npz files in the current directory, parses each instrument, and saves in the root directory as `lmd_segments.npy`.
 ```bash
 python parser.py
-```
+```  
 		* `compile.py` compiles the parsed files in the correct input shape - in our case (4, 48, 84, 5).
 ```bash
 python compile.py
-```
+```  
