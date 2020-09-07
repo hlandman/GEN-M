@@ -11,7 +11,7 @@
 	* Download the following and add to results folder:  
 		* [match_scores.json](http://hog.ee.columbia.edu/craffel/lmd/match_scores.json)  
 		* [md5_to_paths.json](http://hog.ee.columbia.edu/craffel/lmd/md5_to_paths.json)  
-	* Download [lmd_matched_h5](http://hog.ee.columbia.edu/craffel/lmd/lmd_matched_h5.tar.gz), unzip to results folder. 
+	* Download [lmd_matched_h5](http://hog.ee.columbia.edu/craffel/lmd/lmd_matched_h5.tar.gz), unzip to results folder.
 
 3. Preprocessing
 	* Run preprocessing file to filter songs with the 'tech' and 'elec' keywords, longer than 60 seconds, and store them as .npz pianoroll files in `./data/lmd_matched/results/final_midis`.
