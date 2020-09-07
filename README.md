@@ -19,13 +19,13 @@ python lakh_preprocess.py --data_path ./data/lmd_matched --midi_dir lmd_matched 
 --keyword_list tech elec --min_length 60
 ```
 
-Run '<parser.py>' and '<compile.py>', both adapted from https://github.com/wayne391/symbolic-musical-datasets/tree/master/5-track-pianoroll.
-'<parser.py>' finds all .npz files in the current directory, parses each instrument, and saves in the root directory as '<lmd_segments.npy>'.
+Run `parser.py` and `compile.py`, both adapted from https://github.com/wayne391/symbolic-musical-datasets/tree/master/5-track-pianoroll.
+`parser.py` finds all .npz files in the current directory, parses each instrument, and saves in the root directory as `lmd_segments.npy`.
 ```bash
 python parser.py
 ```
 
-'<compile.py>' compiles the parsed files in the correct input shape - in our case (4, 48, 84, 5).
+`compile.py` compiles the parsed files in the correct input shape - in our case (4, 48, 84, 5).
 ```bash
 python compile.py
 ```
