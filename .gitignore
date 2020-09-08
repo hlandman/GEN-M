@@ -1,4 +1,6 @@
 /data/lmd_matched
 /data/results
+/data/lmd_segments.npy
+/data/lmd_compiled.npy
 Lakh-Copy1.ipynb
 .ipynb_checkpoints
