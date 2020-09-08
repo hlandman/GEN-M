@@ -81,7 +81,7 @@ def proc_instr_intersection_list(npz_list):
 
 
 if __name__ == '__main__':
-    root = './data/lmd_matched_te'
+    root = './data/lmd_matched'
     npz_list = list(findall_endswith(root))
 
 #     with open('npz_list.pickle', 'wb') as f:
@@ -177,4 +177,4 @@ if __name__ == '__main__':
     print('---')
     print(cnt_totall_segments)
     print(len(ok_segment_list))    
-    np.save('lmd_segments.npy', ok_segment_list)
+    np.save('./data/lmd_segments.npy', ok_segment_list)
