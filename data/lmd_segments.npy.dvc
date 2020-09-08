@@ -1,0 +1,3 @@
+outs:
+- md5: 3737295375f172fc1e95202566c86950
+  path: lmd_segments.npy

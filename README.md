@@ -23,8 +23,8 @@
 python lakh_preprocess.py --data_path ./data/lmd_matched --midi_dir lmd_matched --meta_dir lmd_matched_h5 --keyword_list tech elec --min_length 60
 ```  
 ```bash
-python compile.py
+python parser.py
 ```  
 ```bash
-python parser.py
+python compile.py
 ```  

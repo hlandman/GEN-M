@@ -1,0 +1,3 @@
+outs:
+- md5: 59ffc07ecb4516d5790508059d4568ca
+  path: lmd_compiled.npy
