@@ -4,7 +4,7 @@
 import numpy as np
 
 print('[*] loading...')
-proc_list = np.load('lmd_segments.npy')
+proc_list = np.load('./data/lmd_segments.npy', allow_pickle=True)
 print('[*] processing...')
 num_item = len(proc_list)
 print(num_item)
