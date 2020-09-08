@@ -88,7 +88,6 @@ def get_long_songs():
         except:
             pass
 
-    print("Long Songs: ", long_songs)
     return long_songs
 
 def main():
