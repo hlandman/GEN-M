@@ -3,5 +3,7 @@
 /data/midi_files
 /data/lmd_segments.npy
 /data/lmd_compiled.npy
+/data/midi_segments.npy
+/data/midi_compiled.npy
 Lakh-Copy1.ipynb
 .ipynb_checkpoints
