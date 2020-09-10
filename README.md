@@ -14,7 +14,7 @@
 	* Download [lmd_matched_h5](http://hog.ee.columbia.edu/craffel/lmd/lmd_matched_h5.tar.gz), unzip to results folder.
 
 3. Preprocessing
-	* Run preprocessing file to filter songs with the 'tech' and 'elec' keywords, longer than 60 seconds, and store them as .npz pianoroll files in `./data/lmd_matched/results/final_midis`.
+	* Run `lakh_preprocess.py` to filter songs from LMD with the 'tech' and 'elec' keywords, longer than 60 seconds, and store them as .npz pianoroll files in `./data/lmd_matched/results/final_midis`.
 	* Run `parser.py` and `compile.py`, both adapted from [symbolic-musical-datasets](https://github.com/wayne391/symbolic-musical-datasets/tree/master/5-track-pianoroll).  
 		* `parser.py` finds all .npz files in the current directory, parses each instrument, and saves in the root directory as `lmd_segments.npy`.
 		* `compile.py` compiles the parsed files in the correct input shape - in our case (4, 48, 84, 5) - and saves as `data/lmd_compiled.npy`.
@@ -28,3 +28,23 @@ python parser.py
 ```bash
 python compile.py
 ```  
+
+### Other MIDI files
+
+1. Add MIDI files to new folder `./data/midi_files/midis`.
+
+2. Preprocessing
+	* Run `midi_preprocess.py` to convert and store MIDI files as pianorolls in `./data/midi_files/npz_files`.
+	* Run `parser.py` and `compile.py`, both adapted from [symbolic-musical-datasets](https://github.com/wayne391/symbolic-musical-datasets/tree/master/5-track-pianoroll).  
+		* `parser.py` finds all .npz files in the current directory, parses each instrument, and saves in the root directory as `lmd_segments.npy`.
+		* `compile.py` compiles the parsed files in the correct input shape - in our case (4, 48, 84, 5) - and saves as `data/lmd_compiled.npy`.
+
+		```bash
+		python midi_preprocess.py --data_path ./data/midi_files --midi_dir midis
+		```  
+		```bash
+		python parser.py
+		```  
+		```bash
+		python compile.py
+		```  
