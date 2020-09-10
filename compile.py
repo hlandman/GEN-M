@@ -4,7 +4,7 @@
 import numpy as np
 
 print('[*] loading...')
-proc_list = np.load('./data/lmd_segments.npy', allow_pickle=True)
+proc_list = np.load('./data/midi_segments.npy', allow_pickle=True)
 print('[*] processing...')
 num_item = len(proc_list)
 print(num_item)
@@ -23,5 +23,5 @@ for lidx in range(num_item):
 final = np.concatenate(compiled_list, axis=0)
 print(final.shape)
 print('[*] saving...')
-np.save('data/lmd_compiled.npy', final)
+np.save('data/midi_compiled.npy', final)
 print('Done!!')

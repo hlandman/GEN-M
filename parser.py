@@ -112,7 +112,7 @@ if __name__ == '__main__':
         npz_ok = npz_list[oid]
         multitrack = Multitrack(npz_ok)
         downbeat = multitrack.downbeat
-        
+
         try:
             num_bar = len(downbeat) // resol
             hop_iter = 0
@@ -173,11 +173,11 @@ if __name__ == '__main__':
 
             cnt_totall_segments += len(song_ok_segments)
             print('cur:%d | acc:%d'%(cnt_ok_segment, cnt_totall_segments))
-        
+
         except TypeError:
             pass
 
     print('---')
     print(cnt_totall_segments)
-    print(len(ok_segment_list))    
-    np.save('./data/lmd_segments.npy', ok_segment_list)
+    print(len(ok_segment_list))
+    np.save('./data/midi_segments.npy', ok_segment_list)
