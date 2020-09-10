@@ -18,7 +18,7 @@ def parse_arguments():
     return args
 
 def get_scores():
-    """Retrieve match_scores.json, which matches Lakh MIDI files to 
+    """Retrieve match_scores.json, which matches Lakh MIDI files to
     corresponding 'MSD ID' tags for songs in the Million Song Dataset."""
     args = parse_arguments()
     SCORE_FILE = os.path.join(args.data_path, 'results/match_scores.json')
@@ -62,17 +62,17 @@ def fliter_genres():
     for msd_id in msd_id_list:
         # Read metadata for song
         metadata = h5py.File(msd_id_to_h5(msd_id), "r")
-                
+
         # Iterate through top-5 "artist_terms" (i.e. genre tags) and check if they contain keywords.
         has_key = False
         for term in [str(i, 'utf-8') for i in metadata['metadata']['artist_terms'][:5]]:
             if np.any([i in term for i in args.keyword_list]):
                 has_key = True
-        
+
         if has_key:
             song_list.append(msd_id)
-    
-    return song_list    
+
+    return song_list
 
 def get_long_songs():
     """Get songs longer than min length"""
@@ -96,10 +96,10 @@ def main():
 
     songs = get_long_songs()
 
-    final_path = os.path.join(args.data_path, 'results', 'final_midis')
+    final_path = os.path.join(args.data_path, 'results', 'npz_files')
     if not os.path.exists(final_path):
         os.mkdir(final_path)
-    
+
     for song in songs:
         midifile = midi_path(song)
         npz_path = os.path.join(final_path, song)

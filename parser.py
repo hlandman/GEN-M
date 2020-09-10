@@ -1,3 +1,6 @@
+# Adapted from symbolic-musical-datasets:
+# https://github.com/wayne391/symbolic-musical-datasets/blob/master/5-track-pianoroll/compile.py
+
 import numpy as np
 import os
 from pypianoroll import Multitrack, Track
