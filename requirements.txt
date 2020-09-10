@@ -1,4 +1,4 @@
 numpy==1.19.0
-pypianoroll==0.5.3
 h5py==2.10.0
+pypianoroll==0.5.3
 pretty_midi==0.2.9
