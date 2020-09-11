@@ -75,7 +75,7 @@ def fliter_genres():
     return song_list
 
 def get_long_songs():
-    """Get songs longer than min length"""
+    """Get songs longer than min length that are in 4/4 time."""
     args = parse_arguments()
 
     long_songs = []
@@ -84,7 +84,8 @@ def get_long_songs():
         try:
             midi_data = pretty_midi.PrettyMIDI(midi_path(song))
             if midi_data.get_end_time() >= int(args.min_length):
-                long_songs.append(song)
+                if midi_data.time_signature_changes[0].numerator == 4:
+                    long_songs.append(song)
         except:
             pass
 
