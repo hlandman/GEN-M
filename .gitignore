@@ -5,6 +5,9 @@
 /data/lmd_compiled.npy
 /data/midi_segments.npy
 /data/midi_compiled.npy
+/data/vizzes
+*.twb
+*.twbr
 Lakh-Copy1.ipynb
 LakhViz.ipynb
 .ipynb_checkpoints
