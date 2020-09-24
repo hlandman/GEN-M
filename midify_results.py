@@ -17,16 +17,16 @@ def main():
     # for t in ['fake_x_bernoulli_sampling', 'fake_x_hard_thresholding']:
     #     for i in range(10):
     #         result_path = os.path.join(exp_path, 'results/inference/pianorolls/{}/{}_{}.npz'.format(t, t, i))
-    #         m = Multitrack(result_path)	
+    #         m = Multitrack(result_path)
     #         m.write(os.path.join(exp_path, 'results/inference/pianorolls/{}/result_{}.mid'.format(t, i)))
     #         print(t, i)
 
     method = 'fake_x_hard_thresholding'
     for i in range(10):
         result_path = os.path.join(exp_path, 'results/inference/pianorolls/{}/{}_{}.npz'.format(method, method, i))
-        m = Multitrack(result_path)	
+        m = Multitrack(result_path)
         m.write(os.path.join(exp_path, 'results/inference/pianorolls/{}/result_{}.mid'.format(method, i)))
-        print(t, i)
+        print(method, i)
 
 if __name__ == "__main__":
     main()
