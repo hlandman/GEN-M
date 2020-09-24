@@ -6,8 +6,13 @@
 /data/midi_segments.npy
 /data/midi_compiled.npy
 /data/vizzes
+<<<<<<< HEAD
 *.twb
 *.twbr
+=======
+>>>>>>> fe64e129da47e2c4eb36f908ab60d3af4170fb6b
 Lakh-Copy1.ipynb
 LakhViz.ipynb
+*.twb
+*.twbr
 .ipynb_checkpoints
