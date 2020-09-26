@@ -1,3 +1,16 @@
+## Environment
+
+1. Clone repo  
+```bash
+git clone https://github.com/hlandman/GEN-M.git
+```  
+
+2. Install requirements  
+```bash
+pip install -r requirements.txt
+```  
+Requirements include tensorflow 1.10 - this presents potential environment challenges.
+
 ## Data
 
 ### Download Lakh MIDI Dataset
