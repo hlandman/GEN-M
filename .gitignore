@@ -6,6 +6,8 @@
 /data/midi_segments.npy
 /data/midi_compiled.npy
 /data/vizzes
+/data/old_files
+*.html
 *.twb
 *.twbr
 *.ipynb
