@@ -99,8 +99,8 @@ if __name__ == '__main__':
 #         list_ok = pickle.load(f)
 
     num_consecutive_bar = 4 #8
-    resol = 96
-    down_sample = 2
+    resol = 48 #96
+    down_sample = 1 #2
     cnt_totall_segments = 0
     cnt_augmented = 0
     ok_segment_list = []
