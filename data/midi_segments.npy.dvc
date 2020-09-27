@@ -1,3 +1,3 @@
 outs:
-- md5: 3737295375f172fc1e95202566c86950
-  path: lmd_segments.npy
+- md5: 42e726bb430ede1b0b87fb7a4445a9ba
+  path: midi_segments.npy
