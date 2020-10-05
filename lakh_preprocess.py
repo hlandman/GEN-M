@@ -14,6 +14,7 @@ def parse_arguments():
     parser.add_argument('--meta_dir', help="Name of metadata folder, e.g. 'lmd_matched_h5'.", required=True)
     parser.add_argument('--keyword_list', help="List of genre keywords to filter for in artist terms.", nargs='+', required=True)
     parser.add_argument('--min_length', help="Minimum song length in seconds.", required=True)
+    parser.add_argument('--use_muspy', dest='use_muspy', action='store_true', help="Include if preprocessing using MusPy.")
     args = parser.parse_args()
     return args
 
@@ -89,39 +90,45 @@ def get_long_songs():
         except:
             pass
 
-    return long_songs ##midi
+    return long_songs
 
 def main():
     """Main function: Converts selected MIDI files to pianoroll."""
     args = parse_arguments()
 
     songs = get_long_songs()
-    # scores = get_scores()
-    # songs = list(get_scores())[:50]
 
-    final_path = os.path.join(args.data_path, 'results', 'midi_files')
-    if not os.path.exists(final_path):
-        os.mkdir(final_path)
+    if args.use_muspy:
+	    final_path = os.path.join(args.data_path, 'results', 'midi_files')
+	    if not os.path.exists(final_path):
+	        os.mkdir(final_path)
 
-    for song in songs:
-        midifile = midi_path(song)
-        midi_class = pretty_midi.PrettyMIDI(midifile)
+	    for song in songs:
+	        midifile = midi_path(song)
+	        midi_class = pretty_midi.PrettyMIDI(midifile)
 
-        # music = muspy.read_midi(midifile)
+	        final_midi_path = os.path.join(final_path, song)
+	        if not os.path.exists(os.path.join(final_midi_path, '.mid')):
+	            try:
+	                midi_class.write(final_midi_path + '.mid')
+	            except (IOError, IndexError) as e:
+	                pass
 
-        final_midi_path = os.path.join(final_path, song)
-        if not os.path.exists(os.path.join(final_midi_path, '.mid')):
-            try:
-                midi_class.write(final_midi_path + '.mid')
-            except (IOError, IndexError) as e:
-                pass
+    else:	
+	    final_path = os.path.join(args.data_path, 'results', 'npz_files')
+	    if not os.path.exists(final_path):
+	        os.mkdir(final_path)
 
-        # if not os.path.exists(os.path.join(final_midi_path, '.mid')):
-        #     try:
-        #         parsed = pypianoroll.parse(midifile)
-        #         pypianoroll.save(npz_path, parsed)
-        #     except (IOError, IndexError) as e:
-        #         pass
+	    for song in songs:
+	        midifile = midi_path(song)
+	        npz_path = os.path.join(final_path, song)
+
+	        if not os.path.exists(os.path.join(npz_path, '.npz')):
+	            try:
+	                parsed = pypianoroll.parse(midifile)
+	                pypianoroll.save(npz_path, parsed)
+	            except (IOError, IndexError) as e:
+	                pass
 
 if __name__ == "__main__":
     main()
