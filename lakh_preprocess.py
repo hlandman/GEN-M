@@ -89,28 +89,39 @@ def get_long_songs():
         except:
             pass
 
-    return long_songs
+    return long_songs ##midi
 
 def main():
     """Main function: Converts selected MIDI files to pianoroll."""
     args = parse_arguments()
 
     songs = get_long_songs()
+    # scores = get_scores()
+    # songs = list(get_scores())[:50]
 
-    final_path = os.path.join(args.data_path, 'results', 'npz_files')
+    final_path = os.path.join(args.data_path, 'results', 'midi_files')
     if not os.path.exists(final_path):
         os.mkdir(final_path)
 
     for song in songs:
         midifile = midi_path(song)
-        npz_path = os.path.join(final_path, song)
+        midi_class = pretty_midi.PrettyMIDI(midifile)
 
-        if not os.path.exists(os.path.join(npz_path, '.npz')):
+        # music = muspy.read_midi(midifile)
+
+        final_midi_path = os.path.join(final_path, song)
+        if not os.path.exists(os.path.join(final_midi_path, '.mid')):
             try:
-                parsed = pypianoroll.parse(midifile)
-                pypianoroll.save(npz_path, parsed)
+                midi_class.write(final_midi_path + '.mid')
             except (IOError, IndexError) as e:
                 pass
+
+        # if not os.path.exists(os.path.join(final_midi_path, '.mid')):
+        #     try:
+        #         parsed = pypianoroll.parse(midifile)
+        #         pypianoroll.save(npz_path, parsed)
+        #     except (IOError, IndexError) as e:
+        #         pass
 
 if __name__ == "__main__":
     main()
