@@ -67,7 +67,7 @@ mkdir ./exp
 ```bash
 mkdir ./exp/lmd_tech_elec_01 # Or custom experiment name
 cp ./default_params.yaml ./exp/lmd_tech_elec_01/params.yaml
-cp ./exp/lmd_tech_elec_1/config.yaml ./exp/lmd_tech_elec_01/config.yaml
+cp ./default_config.yaml ./exp/lmd_tech_elec_01/config.yaml
 ```  
 
 3. Add a note describing the experiment.  

@@ -12,3 +12,4 @@
 *.twbr
 *.ipynb
 *.ipynb_checkpoints
+/exp
