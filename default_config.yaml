@@ -1,27 +1,27 @@
 # Experiment
 n_jobs: 20
-log_loss_steps: 100 # set to 0 to disable loss logging
-save_samples_steps: 100 # set to 0 to disable saving samples
-save_summaries_steps: 0 # set to 0 to disable saving summaries
-save_checkpoint_steps: 10000 # set to 0 to disable saving checkpoints
-evaluate_steps: 100 # set to 0 to disable evaluation
+log_loss_steps: 50 #100 # set to 0 to disable loss logging
+save_samples_steps: 50 #100 # set to 0 to disable saving samples
+save_summaries_steps: 50 # set to 0 to disable saving summaries
+save_checkpoint_steps: 50 #10000 # set to 0 to disable saving checkpoints
+evaluate_steps: 50 #100 # set to 0 to disable evaluation
 
 # Data
-data_source: 'sa' # 'sa', 'npy', 'npz'
-data_filename: train_x_lpd_5_phr
+data_source: 'npy' # 'sa', 'npy', 'npz'
+data_filename: './data/midi_compiled.npy'
 use_random_transpose: false # randomly transpose the piano-rolls at training
 use_train_test_split: false # split the piano-rolls at training
 
 # Training
-steps: 50000
-batch_size: 64
+steps: 10000 #50000
+batch_size: 32 #64
 n_dis_updates_per_gen_update: 5
 
 # Optimizers
 initial_learning_rate: 0.001
 use_learning_rate_decay: true
 learning_rate_schedule:
-  start: 45000
+  start: 9000 #45000
   end: ~
   end_value: 0.0
 adam:
@@ -36,7 +36,7 @@ use_gradient_penalties: true
 use_slope_annealing: false
 slope_schedule: # start_value is fixed to 1.0
   end_value: 5.0
-  start: 10000
+  start: 2000 #10000
   end: ~
 
 # Sampling
@@ -48,7 +48,7 @@ midi:
   lowest_pitch: 24 # the lowest pitch of the piano-rolls
   programs: [0, 0, 25, 33, 48]
   is_drums: [1, 0, 0, 0, 0]
-  tempo: 100 # in bpm
+  tempo: 120 #100 # in bpm
 colormap:
   - [1., 0., 0.]
   - [1., .5, 0.]

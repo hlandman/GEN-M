@@ -78,25 +78,18 @@ echo "Train on 3690 Tech/Elec songs from LMD - 3300 steps." > ./exp/lmd_tech_ele
 
 4. Manually edit `./exp/<exp_name>/config.yaml` according to experiment specs.
 
-We made the following changes to default values:  
+Important values we used:  
 ```
 # Experiment  
-log_loss_steps: 20  
-save_samples_steps: 50  
 save_checkpoint_steps: 50  
-evaluate_steps: 50  
 
 # Data  
 data_source: 'npy'  
 data_filename: './data/midi_compiled.npy'  
 
 # Training  
-steps: 3300  
+steps: 10000  
 batch_size: 32  
-
-# Optimizers  
-learning_rate_schedule:  
-	start: 2970  
 
 # Sampling  
 midi:  
