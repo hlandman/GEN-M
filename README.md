@@ -105,14 +105,7 @@ python ./src/train.py --exp_dir ./exp/lmd_tech_elec_01 --params \
 
 ## Inference
 
-1. Manually change first line in `./exp/<exp_name>/model/checkpoint` to:  
-```
-model_checkpoint_path: "model.ckpt-####"
-```
-The "####" symbols refer to the most recent checkpoint saved.  
-
-
-2. Run inference
+1. Run inference
 
 ```bash
 python ./src/inference.py --checkpoint_dir ./exp/lmd_tech_elec_01/model \
@@ -120,8 +113,8 @@ python ./src/inference.py --checkpoint_dir ./exp/lmd_tech_elec_01/model \
   --config ./exp/lmd_tech_elec_01/config.yaml --runs 10 --gpu 0
 ```  
 
-3. Convert `.npz` results to midi  
+2. Convert `.npz` results to midi  
 ```bash
-python3 midify_results.py ./exp/lmd_tech_elec_01/
+python midify_results.py ./exp/lmd_tech_elec_01/
 ```  
 Resulting MIDI files are stored in `./exp/<exp_name>/results/inference/pianorolls`.  
