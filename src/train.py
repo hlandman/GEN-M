@@ -183,6 +183,9 @@ def load_or_create_samples(params, config):
 
 def main():
     """Main function."""
+    # Eager execution - HL
+    # tf.enable_eager_execution()
+
     # Setup
     logging.basicConfig(level=LOGLEVEL, format=LOG_FORMAT)
     params, config = setup()
