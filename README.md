@@ -31,25 +31,25 @@ Requirements include tensorflow 1.10 - this presents potential environment chall
 1. Run `lakh_preprocess.py` to filter songs from LMD with the 'tech' and 'elec' keywords, longer than 60 seconds, and store them as .npz pianoroll files in `./data/lmd_matched/results/npz_files`.
 
 ```bash
-python lakh_preprocess.py --data_path ./data/lmd_matched --midi_dir lmd_matched \
+python preprocess/lakh_preprocess.py --data_path ./data/lmd_matched --midi_dir lmd_matched \
 --meta_dir lmd_matched_h5 --keyword_list tech elec --min_length 60
 ```  
 
 2. Run `midi_preprocess.py` to convert and store other MIDI files as pianorolls in `./data/midi_files/npz_files`.
 
 ```bash
-python midi_preprocess.py --data_path ./data/midi_files --midi_dir midis
+python preprocess/midi_preprocess.py --data_path ./data/midi_files --midi_dir midis
 ```  
 
 3. Run `parser.py` and `compile.py`, both adapted from [symbolic-musical-datasets](https://github.com/wayne391/symbolic-musical-datasets/tree/master/5-track-pianoroll).  
-	* `parser.py` finds all .npz files in the current directory, parses each instrument, and saves in the root directory as `lmd_segments.npy`.
-	* `compile.py` compiles the parsed files in the correct input shape - in our case (4, 48, 84, 5) - and saves as `data/lmd_compiled.npy`.
+	* `parser.py` finds all .npz files in the current directory, parses each instrument, and saves in the root directory as `data/midi_segments.npy`.
+	* `compile.py` compiles the parsed files in the correct input shape - in our case (4, 48, 84, 5) - and saves as `data/midi_compiled.npy`.
 
 ```bash
-python parser.py
+python preprocess/parser.py
 ```  
 ```bash
-python compile.py
+python preprocess/compile.py
 ```  
 
 ## Train Model
@@ -73,7 +73,7 @@ cp ./default_config.yaml ./exp/lmd_tech_elec_01/config.yaml
 3. Add a note describing the experiment.  
 
 ```bash
-echo "Train on 3690 Tech/Elec songs from LMD - 3300 steps." > ./exp/lmd_tech_elec_01/exp_note.txt
+echo "Train on 3690 Tech/Elec songs from LMD - 10,000 steps." > ./exp/lmd_tech_elec_01/exp_note.txt
 ```  
 
 4. Manually edit `./exp/<exp_name>/config.yaml` according to experiment specs.
@@ -118,3 +118,10 @@ python ./src/inference.py --checkpoint_dir ./exp/lmd_tech_elec_01/model \
 python midify_results.py ./exp/lmd_tech_elec_01/
 ```  
 Resulting MIDI files are stored in `./exp/<exp_name>/results/inference/pianorolls`.  
+
+## Evaluation  
+
+Run `run_eval.py <exp_name>` to see metrics for resulting midis.  
+```bash
+python run_eval.py lmd_tech_elec_01
+```  
