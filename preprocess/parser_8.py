@@ -100,7 +100,7 @@ if __name__ == '__main__':
 
     num_consecutive_bar = 8
     resol = 96
-    down_sample = 1 #2
+    down_sample = 2
     cnt_totall_segments = 0
     cnt_augmented = 0
     ok_segment_list = []

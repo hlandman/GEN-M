@@ -16,7 +16,7 @@ for lidx in range(num_item):
     for tracks in multi_track.tracks:
         pianorolls.append(tracks.pianoroll[:, :, np.newaxis])
 
-    pianoroll_compiled = np.reshape(np.concatenate(pianorolls, axis=2)[:, 24:108, :], (8, 96, 84, 5)) #(8, 48, 84, 5))
+    pianoroll_compiled = np.reshape(np.concatenate(pianorolls, axis=2)[:, 24:108, :], (8, 48, 84, 5))
     pianoroll_compiled  = pianoroll_compiled[np.newaxis, :] > 0
     compiled_list.append(pianoroll_compiled.astype(bool))
 

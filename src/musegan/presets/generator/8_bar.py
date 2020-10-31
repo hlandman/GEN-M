@@ -45,28 +45,28 @@ class Generator:
             # Shared network
             with tf.variable_scope('shared'):
                 h = tconv_layer(h, 512, (8, 1, 1), (8, 1, 1))        # 8, 1, 1
-                h = tconv_layer(h, 256, (1, 8, 3), (1, 8, 3))        # 8, 8, 3
-                h = tconv_layer(h, 128, (1, 4, 3), (1, 4, 2))        # 8, 32, 7
+                h = tconv_layer(h, 256, (1, 4, 3), (1, 4, 3))        # 8, 4, 3
+                h = tconv_layer(h, 128, (1, 4, 3), (1, 4, 2))        # 8, 16, 7
 
             # Pitch-time private network
             with tf.variable_scope('pitch_time_private'):
-                s1 = [tconv_layer(h, 32, (1, 1, 12), (1, 1, 12))     # 8, 32, 84
+                s1 = [tconv_layer(h, 32, (1, 1, 12), (1, 1, 12))     # 8, 16, 84
                       for _ in range(self.n_tracks)]
-                s1 = [tconv_layer(s1[i], 16, (1, 3, 1), (1, 3, 1))   # 8, 96, 84
+                s1 = [tconv_layer(s1[i], 16, (1, 3, 1), (1, 3, 1))   # 8, 48, 84
                       for i in range(self.n_tracks)]
 
             # Time-pitch private network
             with tf.variable_scope('time_pitch_private'):
-                s2 = [tconv_layer(h, 32, (1, 3, 1), (1, 3, 1))       # 8, 96, 7
+                s2 = [tconv_layer(h, 32, (1, 3, 1), (1, 3, 1))       # 8, 48, 7
                       for _ in range(self.n_tracks)]
-                s2 = [tconv_layer(s2[i], 16, (1, 1, 12), (1, 1, 12)) # 8, 96, 84
+                s2 = [tconv_layer(s2[i], 16, (1, 1, 12), (1, 1, 12)) # 8, 48, 84
                       for i in range(self.n_tracks)]
 
             h = [tf.concat((s1[i], s2[i]), -1) for i in range(self.n_tracks)]
 
             # Merged private network
             with tf.variable_scope('merged_private'):
-                h = [norm(tconv3d(h[i], 1, (1, 1, 1), (1, 1, 1)))    # 8, 96, 84
+                h = [norm(tconv3d(h[i], 1, (1, 1, 1), (1, 1, 1)))    # 8, 48, 84
                      for i in range(self.n_tracks)]
                 h = tf.concat(h, -1)
 

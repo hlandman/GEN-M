@@ -5,6 +5,8 @@
 /data/lmd_compiled.npy
 /data/midi_segments.npy
 /data/midi_compiled.npy
+/data/midi_segments_8.npy
+/data/midi_compiled_8.npy
 /data/vizzes
 /data/old_files
 *.html
