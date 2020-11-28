@@ -44,9 +44,9 @@ class Generator:
 
             # Shared network
             with tf.variable_scope('shared'):
-                h = tconv_layer(h, 512, (8, 1, 1), (8, 1, 1))        # 8, 1, 1
-                h = tconv_layer(h, 256, (1, 4, 3), (1, 4, 3))        # 8, 4, 3
-                h = tconv_layer(h, 128, (1, 4, 3), (1, 4, 2))        # 8, 16, 7
+                h = tconv_layer(h, 256, (8, 1, 1), (8, 1, 1))        # 8, 1, 1
+                h = tconv_layer(h, 128, (1, 4, 3), (1, 4, 3))        # 8, 4, 3
+                h = tconv_layer(h, 64, (1, 4, 3), (1, 4, 2))        # 8, 16, 7
 
             # Pitch-time private network
             with tf.variable_scope('pitch_time_private'):
